@@ -1,0 +1,55 @@
+
+
+1. Get all invoices where the `unit_price` on the `invoice_line` is greater than $0.99.
+
+-SELECT *
+-FROM invoice i 
+_JOIN invoice_line il ON il.invoice_id = i.invoice_id
+_WHERE il.unit_price > 0.99;
+
+2. Get the `invoice_date`, customer `first_name` and `last_name`, and `total` from all invoices.
+
+_SELECT i.invoice_date, c.first_name, c.last_name, i.total
+_from invoice i 
+_ JOIN customer c ON i.customer_id = c.customer_id;
+
+
+3. Get the customer `first_name` and `last_name` and the support rep's `first_name` and `last_name` from all customers. 
+ 
+ _SELECT c.first_name, c.last_name, e.first_name, e.last_name
+ _FROM customer c 
+ _JOIN employee e ON c.support_rep_id = e.employee_id;
+
+    * Support reps are on the employee table.
+
+
+4. Get the album `title` and the artist `name` from all albums.
+_SELECT al.title, ar.name
+_FROM album al 
+_JOIN artist ar ON al.artist_id = ar.artist_id;
+
+
+5. Get all playlist_track track_ids where the playlist `name` is Music.
+_SELECT pt.track_id
+_FROM playlist_track pt
+_JOIN playlist p ON p.playlist_id = pt.playlist_id
+_WHERE p.name = 'music';
+
+
+6. Get all track `name`s for `playlist_id` 5.
+_SELECT t.first_name
+_FROM track t
+_JOIN playlist_track pt ON pt.track_id = t.track_id
+
+7. Get all track `name`s and the playlist `name` that they're on ( 2 joins ).
+_SELECT t.name, p.name
+_FROM track t 
+_JOIN playlist_track pt ON t.track_id = pt.track_id
+_JOIN playlist p ON pt.playlist_id = p.playlist_id;
+
+8. Get all track `name`s and album `title`s that are the genre `Alternative & Punk` ( 2 joins ).
+
+_SELECT t.name, a.title
+_FROM track t
+_JOIN genre g ON g.genre_id = t.genre_id
+_WHERE g.name = 'Alternative & Punk';
